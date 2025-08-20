@@ -22,7 +22,7 @@ public class Focus {
     private int timer;
     private int short_break;
     private int long_break;
-    @Embedded
+    @OneToMany(mappedBy = "focus", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Task> tasks;
 
     public Focus(DataFocus data) {
