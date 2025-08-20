@@ -19,9 +19,9 @@ public class Focus {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private int timer;
-    private int short_break;
-    private int long_break;
+    private Integer timer;
+    private Integer short_break;
+    private Integer long_break;
     @OneToMany(mappedBy = "focus", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Task> tasks;
 
