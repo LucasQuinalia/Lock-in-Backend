@@ -20,7 +20,7 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private boolean completed;
+    private Boolean completed;
     private LocalDate due_date;
     @ManyToOne
     @JoinColumn(name = "focus_id")
