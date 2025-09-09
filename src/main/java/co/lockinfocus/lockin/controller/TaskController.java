@@ -52,13 +52,26 @@ public class TaskController {
         return ResponseEntity.ok(page);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<DataGetTask> readById(@PathVariable Long id) {
-        var optionalTask = taskRepository.findById(id);
+    @GetMapping("/{taskId}")
+    public ResponseEntity<DataGetTask> readById(@PathVariable Long taskId) {
+        var optionalTask = taskRepository.findById(taskId);
 
         if (optionalTask.isPresent()) {
             var task = optionalTask.get();
             return ResponseEntity.ok(new DataGetTask(task));
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/{taskId}")
+    @Transactional
+    public ResponseEntity delete(@PathVariable Long taskId) {
+        var optionalTask = taskRepository.findById(taskId);
+        if (optionalTask.isPresent()) {
+            var task = optionalTask.get();
+            task.getFocus().getTasks().remove(task);
+            return ResponseEntity.noContent().build();
         }
 
         return ResponseEntity.notFound().build();
