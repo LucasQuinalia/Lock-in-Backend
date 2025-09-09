@@ -5,7 +5,7 @@ import jakarta.validation.constraints.*;
 
 import java.util.List;
 
-public record DataFocus(
+public record DataPostFocus(
         @NotBlank
         String title,
         @NotNull

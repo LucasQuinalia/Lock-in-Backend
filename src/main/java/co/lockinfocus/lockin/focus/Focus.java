@@ -25,7 +25,7 @@ public class Focus {
     @OneToMany(mappedBy = "focus", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Task> tasks;
 
-    public Focus(DataFocus data) {
+    public Focus(DataPostFocus data) {
         this.title = data.title();
         this.timer = data.timer();
         this.short_break = data.short_break();
