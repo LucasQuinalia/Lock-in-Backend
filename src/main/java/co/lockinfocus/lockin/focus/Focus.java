@@ -2,12 +2,14 @@ package co.lockinfocus.lockin.focus;
 
 import co.lockinfocus.lockin.task.Task;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Optional;
 
 @Table(name = "focuses")
 @Entity(name = "Focus")
@@ -30,5 +32,20 @@ public class Focus {
         this.timer = data.timer();
         this.short_break = data.short_break();
         this.long_break = data.long_break();
+    }
+
+    public void updateFocus(@Valid DataPutFocus data) {
+        if (data.title() != null) {
+            this.title = data.title();
+        }
+        if (data.timer() != null) {
+            this.timer = data.timer();
+        }
+        if (data.short_break() != null) {
+            this.short_break = data.short_break();
+        }
+        if (data.long_break() != null) {
+            this.long_break = data.long_break();
+        }
     }
 }
