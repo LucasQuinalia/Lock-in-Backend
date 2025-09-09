@@ -62,4 +62,16 @@ public class FocusController {
 
         return ResponseEntity.notFound().build();
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity delete(@PathVariable Long id) {
+        var optionalFocus = repository.findById(id);
+        if (optionalFocus.isPresent()) {
+            repository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.notFound().build();
+    }
 }
