@@ -22,5 +22,4 @@ public record DataPostFocus(
         Integer long_break,
         List<Task> tasks
 ) {
-
 }

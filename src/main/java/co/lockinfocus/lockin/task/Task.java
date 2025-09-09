@@ -1,7 +1,9 @@
 package co.lockinfocus.lockin.task;
 
+import co.lockinfocus.lockin.controller.FocusController;
 import co.lockinfocus.lockin.focus.Focus;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,4 +27,11 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "focus_id")
     private Focus focus;
+
+    public Task(DataPostTask data, Focus focus) {
+        this.title = data.title();
+        this.completed = data.completed();
+        this.due_date = data.due_date();
+        this.focus = focus;
+    }
 }
