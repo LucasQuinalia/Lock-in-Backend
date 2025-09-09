@@ -2,10 +2,7 @@ package co.lockinfocus.lockin.controller;
 
 import co.lockinfocus.lockin.focus.DataGetFocus;
 import co.lockinfocus.lockin.focus.FocusRepository;
-import co.lockinfocus.lockin.task.DataGetTask;
-import co.lockinfocus.lockin.task.DataPostTask;
-import co.lockinfocus.lockin.task.Task;
-import co.lockinfocus.lockin.task.TaskRepository;
+import co.lockinfocus.lockin.task.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +55,21 @@ public class TaskController {
 
         if (optionalTask.isPresent()) {
             var task = optionalTask.get();
+            return ResponseEntity.ok(new DataGetTask(task));
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity update(@RequestBody @Valid DataPutTask data) {
+        var optionalTask = taskRepository.findById(data.id());
+
+        if (optionalTask.isPresent()) {
+            var task = optionalTask.get();
+            task.updateTask(data);
+
             return ResponseEntity.ok(new DataGetTask(task));
         }
 

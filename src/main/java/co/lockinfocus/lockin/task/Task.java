@@ -34,4 +34,16 @@ public class Task {
         this.due_date = data.due_date();
         this.focus = focus;
     }
+
+    public void updateTask(@Valid DataPutTask data) {
+        if (data.title() != null) {
+            this.title = data.title();
+        }
+        if (data.completed() != null) {
+            this.completed = data.completed();
+        }
+        if (data.due_date() != null) {
+            this.due_date = data.due_date();
+        }
+    }
 }
